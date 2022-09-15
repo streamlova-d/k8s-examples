@@ -19,7 +19,19 @@ See an exmample in the directory
 
     cd ./nginx-hello-world
     docker-compose up
-    
+
+### Where is this index.html?
+
+    docker-compose run nginx /bin/bash
+    cd /usr/share/nginx/html
+    ls -la
+
+Maybe we can change something?
+
+    apt-get update
+    apt-get install nano
+    nano index.html
+
 ### How to add files?
 Now you can change to the next example with
 
@@ -59,3 +71,12 @@ Nowadays, the most commonly used solution for this task is: Kubernetes.
 ## Bonus: Istio
 Istio has many advantages - but one important point to me is it's "self-service-gateway" character enabling such interesting use-cases like namespace as a service etc. .
 ### VirtualService
+
+
+
+
+
+
+## Links
+
+* https://hub.docker.com/_/nginx
