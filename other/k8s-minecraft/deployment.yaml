@@ -27,7 +27,7 @@ spec:
       - name: docker-secret
       containers:
         - name: minecraft
-          image: nordbase/minecraft
+          image: xxx/minecraft
           tty: true
           imagePullPolicy: Always
           volumeMounts:
@@ -43,4 +43,4 @@ spec:
           - name: VERSION
             value: "1.16.5"
           - name: OPS
-            value: "Agent8_,Minecraft_2022,Mista_Dad"
+            value: "<Add Playernames here>"
