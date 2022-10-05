@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-server
+  namespace: xxx
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      volumes:
+      - name: world
+        hostPath:
+          path: /mnt/minecraft
+          type: DirectoryOrCreate
+      imagePullSecrets:
+      - name: docker-secret
+      containers:
+        - name: minecraft
+          image: nordbase/minecraft
+          tty: true
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: world
+              mountPath: /data
+          ports:
+            - containerPort: 25565
+          env:
+          - name: EULA
+            value: "TRUE"
+          - name: TYPE
+            value: "FORGE"
+          - name: VERSION
+            value: "1.16.5"
+          - name: OPS
+            value: "Agent8_,Minecraft_2022,Mista_Dad"
