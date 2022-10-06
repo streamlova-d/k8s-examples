@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: xxx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+        env:
+          - name: EULA
+            value: "TRUE"
+        envFrom:
+          - configMapRef:
+              name: nginx-configmap
+          - secretRef:
+              name: nginx-secret
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
+        # startupProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
+        # readinessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
