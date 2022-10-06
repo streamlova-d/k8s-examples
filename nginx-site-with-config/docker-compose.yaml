@@ -5,7 +5,7 @@ services:
     ports:
       - 8080:80
     environment:
-      - TEST_ENV: TESTENV123
+      TEST_ENV: TESTENV123
     volumes:
       -  ./content:/usr/share/nginx/html:ro
       -  ./default.conf:/etc/nginx/conf.d/default.conf:ro
