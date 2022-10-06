@@ -2,4 +2,4 @@
 
 docker build -t <myregistryorcompany>/nginx .
 
-docker push
+docker push <myregistryorcompany>/nginx
